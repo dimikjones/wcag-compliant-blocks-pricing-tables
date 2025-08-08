@@ -4,11 +4,11 @@ return array(
 	'wcag-compliant-blocks-pricing-tables' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/wcag-compliant-blocks-pricing-tables',
+		'name' => 'wcag-compliant-blocks/wcag-compliant-blocks-pricing-tables',
 		'version' => '0.1.0',
 		'title' => 'Wcag Compliant Blocks Pricing Tables',
 		'category' => 'widgets',
-		'icon' => 'smiley',
+		'icon' => 'editor-table',
 		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(
 			
