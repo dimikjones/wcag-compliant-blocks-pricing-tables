@@ -8,7 +8,7 @@ export default function save({ attributes }) {
 		<div { ...useBlockProps.save() }>
 			<div className="wp-block-wcag-compliant-blocks-pricing-tables">
 				{tiers.map((tier, index) => (
-					<div key={index} className="pricing-tier">
+					<div key={index} className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`}>
 						<h3>{tier.name}</h3>
 						<div className="price">{tier.price}</div>
 						<RichText.Content

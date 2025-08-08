@@ -19,6 +19,26 @@
 	box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
+.pricing-tier.featured {
+	border: 2px solid #3858e9;
+	position: relative;
+	transform: scale(1.02);
+	box-shadow: 0 4px 12px rgba(56, 88, 233, 0.2);
+}
+
+.pricing-tier.featured::before {
+	content: "Featured";
+	position: absolute;
+	top: -12px;
+	right: 20px;
+	background: #3858e9;
+	color: white;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
 .pricing-tier h3 {
 	margin-top: 0;
 	color: #1e1e1e;

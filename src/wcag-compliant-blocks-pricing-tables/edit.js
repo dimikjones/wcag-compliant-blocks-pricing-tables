@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, Button, RangeControl } from '@wordpress/components';
+import { PanelBody, TextControl, Button, RangeControl, ToggleControl } from '@wordpress/components';
 import { RichText, URLInput } from '@wordpress/block-editor';
 
 /**
@@ -78,6 +78,11 @@ export default function Edit({ attributes, setAttributes }) {
 								value={tier.buttonUrl}
 								onChange={(value) => updateTierProperty(index, 'buttonUrl', value)}
 							/>
+							<ToggleControl
+								label={__('Featured Table', 'wcag-compliant-blocks-pricing-tables')}
+								checked={tier.featured_table || false}
+								onChange={(value) => updateTierProperty(index, 'featured_table', value)}
+							/>
 							{tiers.length > 2 && (
 								<Button
 									variant="secondary"
@@ -101,7 +106,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 			<div className="wp-block-wcag-compliant-blocks-pricing-tables">
 				{tiers.map((tier, index) => (
-					<div key={index} className="pricing-tier">
+					<div key={index} className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`}>
 						<h3>{tier.name}</h3>
 						<div className="price">{tier.price}</div>
 						<RichText.Content

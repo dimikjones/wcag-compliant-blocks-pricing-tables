@@ -21,14 +21,16 @@
           "price": "$10/month",
           "description": "Basic plan features",
           "buttonText": "Get Started",
-          "buttonUrl": ""
+          "buttonUrl": "",
+          "featured_table": false
         },
         {
           "name": "Pro",
           "price": "$20/month",
           "description": "Pro plan features",
           "buttonText": "Get Started",
-          "buttonUrl": ""
+          "buttonUrl": "",
+          "featured_table": false
         }
       ]
     }

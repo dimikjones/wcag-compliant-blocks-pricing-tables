@@ -26,14 +26,16 @@ return array(
 						'price' => '$10/month',
 						'description' => 'Basic plan features',
 						'buttonText' => 'Get Started',
-						'buttonUrl' => ''
+						'buttonUrl' => '',
+						'featured_table' => false
 					),
 					array(
 						'name' => 'Pro',
 						'price' => '$20/month',
 						'description' => 'Pro plan features',
 						'buttonText' => 'Get Started',
-						'buttonUrl' => ''
+						'buttonUrl' => '',
+						'featured_table' => false
 					)
 				)
 			)
