@@ -1,26 +1,29 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
 import { useBlockProps } from '@wordpress/block-editor';
+import { RichText } from '@wordpress/block-editor';
 
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {Element} Element to render.
- */
-export default function save() {
+export default function save({ attributes }) {
+	const { tiers } = attributes;
+	
 	return (
-		<p { ...useBlockProps.save() }>
-			{
-				'Wcag Compliant Blocks Pricing Tables – hello from the saved content!'
-			}
-		</p>
+		<div { ...useBlockProps.save() }>
+			<div className="wp-block-wcag-compliant-blocks-pricing-tables">
+				{tiers.map((tier, index) => (
+					<div key={index} className="pricing-tier">
+						<h3>{tier.name}</h3>
+						<div className="price">{tier.price}</div>
+						<RichText.Content
+							tagName="div"
+							className="description"
+							value={tier.description}
+						/>
+						{tier.buttonUrl && (
+							<a href={tier.buttonUrl} className="button">
+								{tier.buttonText}
+							</a>
+						)}
+					</div>
+				))}
+			</div>
+		</div>
 	);
 }

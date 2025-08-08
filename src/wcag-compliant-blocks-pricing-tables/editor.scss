@@ -1,9 +1,41 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.wp-block-wcag-compliant-blocks-pricing-tables {
+	display: grid;
+	gap: 1.5rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	margin: 1rem 0;
+}
 
-.wp-block-wcag-compliant-blocks-wcag-compliant-blocks-pricing-tables {
-	border: 1px dotted #f00;
+.pricing-tier {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 1.5rem;
+	background: #fff;
+}
+
+.pricing-tier h3 {
+	margin-top: 0;
+	color: #1e1e1e;
+}
+
+.pricing-tier .price {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin: 1rem 0;
+}
+
+.pricing-tier .description {
+	margin-bottom: 1.5rem;
+}
+
+.pricing-tier .button {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background: #3858e9;
+	color: white;
+	text-decoration: none;
+	border-radius: 4px;
+}
+
+.pricing-tier .button:hover {
+	background: #2a4bd1;
 }
