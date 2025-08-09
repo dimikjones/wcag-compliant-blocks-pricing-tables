@@ -2,10 +2,9 @@
  * WordPress dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, Button, RangeControl, ToggleControl, Icon, SelectControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, RichText, URLInput } from '@wordpress/block-editor';
+import { PanelBody, TextControl, Button, ToggleControl, Icon } from '@wordpress/components';
 import { arrowUp, arrowDown, plus, trash } from '@wordpress/icons';
-import { RichText, URLInput } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
@@ -34,7 +33,7 @@ export default function Edit({ attributes, setAttributes }) {
 		}
 		newTiers[tierIndex].features.push({
 			text: __('New Feature', 'wcag-compliant-blocks-pricing-tables'),
-			isExcluded: false
+			isExcluded: false,
 		});
 		setAttributes({ tiers: newTiers });
 	};
@@ -49,7 +48,10 @@ export default function Edit({ attributes, setAttributes }) {
 		if (featureIndex === 0) return;
 		const newTiers = [...tiers];
 		const features = [...newTiers[tierIndex].features];
-		[features[featureIndex - 1], features[featureIndex]] = [features[featureIndex], features[featureIndex - 1]];
+		[features[featureIndex - 1], features[featureIndex]] = [
+			features[featureIndex],
+			features[featureIndex - 1],
+		];
 		newTiers[tierIndex].features = features;
 		setAttributes({ tiers: newTiers });
 	};
@@ -58,7 +60,10 @@ export default function Edit({ attributes, setAttributes }) {
 		if (featureIndex === tiers[tierIndex].features.length - 1) return;
 		const newTiers = [...tiers];
 		const features = [...newTiers[tierIndex].features];
-		[features[featureIndex], features[featureIndex + 1]] = [features[featureIndex + 1], features[featureIndex]];
+		[features[featureIndex], features[featureIndex + 1]] = [
+			features[featureIndex + 1],
+			features[featureIndex],
+		];
 		newTiers[tierIndex].features = features;
 		setAttributes({ tiers: newTiers });
 	};
@@ -68,7 +73,7 @@ export default function Edit({ attributes, setAttributes }) {
 		const featureToCopy = { ...newTiers[tierIndex].features[featureIndex] };
 		newTiers[tierIndex].features.splice(featureIndex + 1, 0, {
 			...featureToCopy,
-			text: `${featureToCopy.text} (${__('Copy', 'wcag-compliant-blocks-pricing-tables')})`
+			text: `${featureToCopy.text} (${__('Copy', 'wcag-compliant-blocks-pricing-tables')})`,
 		});
 		setAttributes({ tiers: newTiers });
 	};
@@ -85,11 +90,17 @@ export default function Edit({ attributes, setAttributes }) {
 					buttonText: __('Get Started', 'wcag-compliant-blocks-pricing-tables'),
 					buttonUrl: '',
 					features: [
-						{ text: __('Feature 1', 'wcag-compliant-blocks-pricing-tables'), isExcluded: false },
-						{ text: __('Feature 2', 'wcag-compliant-blocks-pricing-tables'), isExcluded: false }
-					]
-				}
-			]
+						{
+							text: __('Feature 1', 'wcag-compliant-blocks-pricing-tables'),
+							isExcluded: false,
+						},
+						{
+							text: __('Feature 2', 'wcag-compliant-blocks-pricing-tables'),
+							isExcluded: false,
+						},
+					],
+				},
+			],
 		});
 	};
 
@@ -113,16 +124,15 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ tiers: newTiers });
 	};
 
-	const blockProps = useBlockProps();
-    const tierCount = tiers.length;
-    const tierCountClass = tierCount > 0 ? `tables--${tierCount}` : '';
+	const tierCount = tiers.length;
+	const tierCountClass = tierCount > 0 ? `tables--${tierCount}` : '';
 
 	return (
-		<div { ...useBlockProps() }>
+		<div {...useBlockProps()}>
 			<InspectorControls>
 				<PanelBody title={__('Pricing Tiers', 'wcag-compliant-blocks-pricing-tables')}>
 					{tiers.map((tier, index) => (
-						<PanelBody 
+						<PanelBody
 							title={sprintf(__('Tier %d', 'wcag-compliant-blocks-pricing-tables'), index + 1)}
 							initialOpen={false}
 							key={index}
@@ -136,11 +146,6 @@ export default function Edit({ attributes, setAttributes }) {
 								label={__('Price', 'wcag-compliant-blocks-pricing-tables')}
 								value={tier.price}
 								onChange={(value) => updateTierProperty(index, 'price', value)}
-							/>
-							<RichText
-								label={__('Description', 'wcag-compliant-blocks-pricing-tables')}
-								value={tier.description}
-								onChange={(value) => updateTierProperty(index, 'description', value)}
 							/>
 							<ToggleControl
 								label={__('Featured Table', 'wcag-compliant-blocks-pricing-tables')}
@@ -265,37 +270,46 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 			</InspectorControls>
 
-			<section className="wp-block-wcag-compliant-blocks-pricing-tables" aria-label={ __( 'Pricing plans', 'wcag-compliant-blocks-pricing-tables' ) }>
-				{ /* A screen-reader-only heading provides a clear title for the section. */ }
-				<h2 class="screen-reader-text">{ __( 'Choose your plan', 'wcag-compliant-blocks-pricing-tables' ) }</h2>
-				{ /* The main container for all pricing tiers. role="region" and aria-label identify this section for screen reader users in order to navigate to it easily. */ }
-				<div className={`pricing-tables-container ${tierCountClass}`} role="region" aria-label={ __( 'Pricing tables', 'wcag-compliant-blocks-pricing-tables' ) }>
-				{ /* Each pricing tier is an independent "article". The aria-labelledby attribute links the tier to its specific title for clear context. */ }
-				{tiers.map((tier, index) => (
-					<div key={index} className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`} role="article" aria-labelledby={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`} {...(tier.featured_table ? { 'aria-current': 'true' } : {})}>
-						<h3 id={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
-						<div className="price">{tier.price}</div>
-						<RichText.Content
-							tagName="div"
-							className="description"
-							value={tier.description}
-						/>
-						{tier.features && tier.features.length > 0 && (
-							<ul className="features-list">
-								{tier.features.map((feature, index) => (
-									<li key={index} className={feature.isExcluded ? 'excluded-feature' : ''}>
-										{feature.text}
-									</li>
-								))}
-							</ul>
-						)}
-						{tier.buttonUrl && (
-							<a href={tier.buttonUrl} className="button" aria-label={tier.buttonText}>
-								{tier.buttonText}
-							</a>
-						)}
-					</div>
-				))}
+			<section className="wp-block-wcag-compliant-blocks-pricing-tables" aria-label={__('Pricing plans', 'wcag-compliant-blocks-pricing-tables')}>
+				{/* A screen-reader-only heading provides a clear title for the section. */}
+				<h2 className="screen-reader-text">{__('Choose your plan', 'wcag-compliant-blocks-pricing-tables')}</h2>
+				{/* The main container for all pricing tiers. role="region" and aria-label identify this section for screen reader users in order to navigate to it easily. */}
+				<div className={`pricing-tables-container ${tierCountClass}`} role="region" aria-label={__('Pricing tables', 'wcag-compliant-blocks-pricing-tables')}>
+					{/* Each pricing tier is an independent "article". The aria-labelledby attribute links the tier to its specific title for clear context. */}
+					{tiers.map((tier, index) => (
+						<div
+							key={index}
+							className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`}
+							role="article"
+							aria-labelledby={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}
+							{...(tier.featured_table ? { 'aria-current': 'true' } : {})}
+						>
+							<h3 id={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
+							<div className="price">{tier.price}</div>
+							<RichText
+								tagName="div"
+								className="description"
+								value={tier.description}
+								onChange={(value) => updateTierProperty(index, 'description', value)}
+								placeholder={__('Enter a description for this plan...', 'wcag-compliant-blocks-pricing-tables')}
+								keepPlaceholderOnFocus
+							/>
+							{tier.features && tier.features.length > 0 && (
+								<ul className="features-list">
+									{tier.features.map((feature, featureIndex) => (
+										<li key={featureIndex} className={feature.isExcluded ? 'excluded-feature' : ''}>
+											{feature.text}
+										</li>
+									))}
+								</ul>
+							)}
+							{tier.buttonUrl && (
+								<a href={tier.buttonUrl} className="button" aria-label={tier.buttonText}>
+									{tier.buttonText}
+								</a>
+							)}
+						</div>
+					))}
 				</div>
 			</section>
 		</div>
