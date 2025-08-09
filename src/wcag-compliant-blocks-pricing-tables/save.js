@@ -18,8 +18,13 @@ export default function save({ attributes }) {
 				<div className={`pricing-tables-container ${tierCountClass}`} role="region" aria-label={ __( 'Pricing tables', 'wcag-compliant-blocks-pricing-tables' ) }>
 				{ /* Each pricing tier is an independent "article". The aria-labelledby attribute links the tier to its specific title for clear context. */ }
 				{tiers.map((tier, index) => (
-					<div key={index} className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`} role="article" aria-labelledby={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`} {...(tier.featured_table ? { 'aria-current': 'true' } : {})}>
-						<h3 id={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
+					<div key={index} className={`pricing-tier${tier.featured_table ? ' featured' : ''}`} role="article" aria-labelledby={`plan-${index + 1}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`} {...(tier.featured_table ? { 'aria-current': 'true' } : {})}>
+						{tier.featured_table && (
+							<div className="best-deal-label">
+								{__('Best Deal', 'wcag-compliant-blocks-pricing-tables')}
+							</div>
+						)}
+						<h3 id={`plan-${index + 1}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
 						<div className="price">{tier.price}</div>
 						<RichText.Content
 							tagName="div"

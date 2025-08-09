@@ -1,86 +1,120 @@
 .wp-block-wcag-compliant-blocks-pricing-tables {
-    display: block;
-}
+	display: block;
 
-.wp-block-wcag-compliant-blocks-pricing-tables .pricing-tables-container {
-	display: grid;
-	gap: 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	margin: 2rem 0;
-}
+	.pricing-tables-container {
+		display: flex;
+		justify-content: center;
+		gap: var(--wp--preset--spacing--40);
+		margin: var(--wp--preset--spacing--70) 0;
 
-.pricing-tier {
-	border: 1px solid #ddd;
-	border-radius: 6px;
-	padding: 2rem;
-	background: #fff;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-	transition: transform 0.2s ease;
-}
+		/* Two tiers per row */
+		&.tables--2 .pricing-tier {
+			flex-basis: 50%;
+		}
 
-.pricing-tier:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
+		/* Three tiers per row */
+		&.tables--3 .pricing-tier {
+			flex-basis: 33.33%;
+		}
 
-.pricing-tier.featured {
-	border: 2px solid #3858e9;
-	position: relative;
-	transform: scale(1.02);
-	box-shadow: 0 4px 12px rgba(56, 88, 233, 0.2);
-}
+		/* Single tier per row */
+		&.tables--1 .pricing-tier {
+			flex-basis: 100%;
+			max-width: 400px;
+		}
 
-.pricing-tier.featured::before {
-	content: "Featured";
-	position: absolute;
-	top: -12px;
-	right: 20px;
-	background: #3858e9;
-	color: white;
-	padding: 4px 12px;
-	border-radius: 20px;
-	font-size: 0.8rem;
-	font-weight: bold;
-}
+		.pricing-tier {
+			border: 2px solid rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+			padding: var(--wp--preset--spacing--40);
+			background: #fff;
+			box-shadow: var(--wp--preset--shadow--sharp);
+			transition: transform 0.2s ease;
+			text-align: center;
 
-.pricing-tier h3 {
-	margin-top: 0;
-	color: #1e1e1e;
-	font-size: 1.5rem;
-}
+			&:hover,
+			&:focus {
+				transform: translateY(-5px);
+			}
 
-.pricing-tier .price {
-	font-size: 2rem;
-	font-weight: bold;
-	margin: 1.5rem 0;
-	color: #3858e9;
-}
+			h3 {
+				margin-top: 0;
+			}
 
-.pricing-tier .description {
-	margin-bottom: 2rem;
-	line-height: 1.6;
-}
+			.price {
+				font-size: var(--wp--preset--font-size--large);
+				font-family: var(--wp--preset--font-family--fira-code);
+				font-weight: 400;
+				margin-bottom: 1rem;
+			}
 
-/* Style for excluded features */
-.features-list .excluded-feature {
-    text-decoration: line-through;
-    opacity: 0.7;
-    color: #666;
-}
+			.description {
+				margin-bottom: 0;
+			}
 
-.pricing-tier .button {
-	display: inline-block;
-	padding: 0.75rem 1.5rem;
-	background: #3858e9;
-	color: white;
-	text-decoration: none;
-	border-radius: 4px;
-	font-weight: 500;
-	transition: background 0.2s ease;
-}
+			.features-list {
+				padding: 0;
+				margin: 0.5em 0 2em 0;
 
-.pricing-tier .button:hover {
-	background: #2a4bd1;
+				li {
+					list-style-type: none;
+
+					/* Style for excluded features */
+					&.excluded-feature {
+						text-decoration: line-through;
+						opacity: 0.5;
+					}
+				}
+			}
+
+			.button {
+				display: block;
+				background-color: var(--wp--preset--color--contrast);
+				border-width: 0;
+				color: var(--wp--preset--color--base);
+				font-family: inherit;
+				font-size: var(--wp--preset--font-size--medium);
+				font-weight: 600;
+				line-height: inherit;
+				padding-top: 1rem;
+				padding-right: 2.25rem;
+				padding-bottom: 1rem;
+				padding-left: 2.25rem;
+				text-decoration: none;
+
+				&:hover {
+					background: #2a4bd1;
+				}
+			}
+
+			&.featured {
+				border: 2px solid var(--wp--preset--color--accent-3);
+				position: relative;
+				transform: translateY(-20px);
+				box-shadow: var(--wp--preset--shadow--sharp);
+
+				.best-deal-label {
+					position: absolute;
+					width: 60%;
+					min-width: 10rem;
+					height: 40px;
+					text-align: center;
+					line-height: 40px;
+					border-radius: 10px 10px 0 0;
+					top: -40px;
+					left: 50%;
+					transform: translateX(-50%);
+					background-color: var(--wp--preset--color--accent-3);
+					color: #fff;
+					font-weight: 500;
+				}
+
+				.button {
+					background-color: var(--wp--preset--color--accent-3);
+				}
+			}
+		}
+	}
 }
 
 @media (max-width: 600px) {

@@ -279,12 +279,17 @@ export default function Edit({ attributes, setAttributes }) {
 					{tiers.map((tier, index) => (
 						<div
 							key={index}
-							className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`}
+							className={`pricing-tier${tier.featured_table ? ' featured' : ''}`}
 							role="article"
-							aria-labelledby={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}
+							aria-labelledby={`plan-${index + 1}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}
 							{...(tier.featured_table ? { 'aria-current': 'true' } : {})}
 						>
-							<h3 id={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
+							{tier.featured_table && (
+							<div className="best-deal-label">
+								{__('Best Deal', 'wcag-compliant-blocks-pricing-tables')}
+							</div>
+							)}
+							<h3 id={`plan-${index + 1}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`}>{tier.name}</h3>
 							<div className="price">{tier.price}</div>
 							<RichText
 								tagName="div"
