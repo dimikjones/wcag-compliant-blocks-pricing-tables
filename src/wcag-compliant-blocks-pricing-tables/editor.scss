@@ -1,4 +1,4 @@
-.tier-actions {
+.tier-wcag-compliant-blocks-pricing-tables-editor-tier-actions {
     display: flex;
     gap: 8px;
     margin-top: 16px;
@@ -24,97 +24,59 @@
     }
 }
 
-.features-section {
+.tier-wcag-compliant-blocks-pricing-tables-editor-features-section {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #e0e0e0;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
 
     .components-base-control__label {
         display: block;
         margin-bottom: 8px;
         font-weight: 600;
     }
-}
 
-.repeater-item {
-    padding: 12px;
-    margin-bottom: 12px;
-    background: #f9f9f9;
-    border-radius: 4px;
-    border: 1px solid #e0e0e0;
-
-    .repeater-item-heading {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .repeater-item {
+        padding: 12px;
         margin-bottom: 12px;
-    }
+        background: #f9f9f9;
+        border-radius: 4px;
+        border: 1px solid #e0e0e0;
 
-    .repeater-item-options {
-        padding: 0 8px;
-    }
+        .repeater-item-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
 
-    .repeater-item-action {
-        display: flex;
-        gap: 4px;
+        .repeater-item-options {
+            padding: 0 8px;
+        }
 
-        .repeater-button {
-            padding: 6px;
-            min-width: auto;
-            height: auto;
+        .repeater-item-action {
+            display: flex;
+            gap: 4px;
 
-            &:hover {
-                background-color: #f0f0f0;
-            }
-
-            &.-remove {
-                color: #cc1818;
+            .repeater-button {
+                padding: 0;
+                min-width: auto;
+                height: auto;
 
                 &:hover {
-                    background-color: rgba(204, 24, 24, 0.1);
+                    background-color: #f0f0f0;
+                }
+
+                &.-remove {
+                    color: #cc1818;
+
+                    &:hover {
+                        background-color: rgba(204, 24, 24, 0.1);
+                    }
                 }
             }
-        }
-    }
-}
-
-.repeater-option {
-    margin-top: 16px;
-
-    .option-label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-    }
-
-    .repeater-items {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .repeater-button.-add {
-        margin-top: 12px;
-    }
-}
-
-.feature-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-
-    .move-feature-button,
-    .remove-feature-button {
-        padding: 6px;
-        min-width: auto;
-
-        &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        &:not(:disabled):hover {
-            background-color: #f0f0f0;
         }
     }
 }

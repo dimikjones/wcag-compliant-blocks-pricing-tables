@@ -4,7 +4,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, RichText, URLInput } from '@wordpress/block-editor';
 import { PanelBody, TextControl, Button, ToggleControl, Icon } from '@wordpress/components';
-import { arrowUp, arrowDown, plus, trash } from '@wordpress/icons';
+import { arrowUp, arrowDown, chevronUp, chevronDown, plus, copySmall, trash } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -152,7 +152,7 @@ export default function Edit({ attributes, setAttributes }) {
 								checked={tier.featured_table || false}
 								onChange={(value) => updateTierProperty(index, 'featured_table', value)}
 							/>
-							<div className="features-section">
+							<div className="tier-wcag-compliant-blocks-pricing-tables-editor-features-section">
 								<label className="components-base-control__label">
 									{__('Features', 'wcag-compliant-blocks-pricing-tables')}
 								</label>
@@ -167,7 +167,7 @@ export default function Edit({ attributes, setAttributes }) {
 													className="repeater-button -move-up"
 													disabled={featureIndex === 0}
 													onClick={() => moveFeatureUp(index, featureIndex)}
-													icon={arrowUp}
+													icon={chevronUp}
 													label={__('Move Up', 'wcag-compliant-blocks-pricing-tables')}
 													showTooltip
 												/>
@@ -175,14 +175,14 @@ export default function Edit({ attributes, setAttributes }) {
 													className="repeater-button -move-down"
 													disabled={featureIndex === tier.features.length - 1}
 													onClick={() => moveFeatureDown(index, featureIndex)}
-													icon={arrowDown}
+													icon={chevronDown}
 													label={__('Move Down', 'wcag-compliant-blocks-pricing-tables')}
 													showTooltip
 												/>
 												<Button
 													className="repeater-button -duplicate"
 													onClick={() => duplicateFeature(index, featureIndex)}
-													icon={plus}
+													icon={copySmall}
 													label={__('Duplicate Item', 'wcag-compliant-blocks-pricing-tables')}
 													showTooltip
 												/>
@@ -231,7 +231,7 @@ export default function Edit({ attributes, setAttributes }) {
 								value={tier.buttonUrl}
 								onChange={(value) => updateTierProperty(index, 'buttonUrl', value)}
 							/>
-							<div className="tier-actions">
+							<div className="wcag-compliant-blocks-pricing-tables-editor-tier-actions">
 								<Button
 									className="move-tier-button"
 									disabled={index === 0}
