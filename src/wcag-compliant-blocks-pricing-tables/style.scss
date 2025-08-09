@@ -29,8 +29,9 @@
 			padding: var(--wp--preset--spacing--40);
 			background: #fff;
 			box-shadow: var(--wp--preset--shadow--sharp);
-			transition: transform 0.2s ease;
+			transition: transform 0.3s ease;
 			text-align: center;
+			will-change: transform;
 
 			&:hover,
 			&:focus {
@@ -115,6 +116,18 @@
 			}
 		}
 	}
+}
+
+/*
+ * Use a media query to detect a user's system preference for reduced motion.
+ * When this preference is active, override the default transitions with a much
+ * faster and less jarring animation.
+ */
+@media (prefers-reduced-motion: reduce) {
+    .wp-block-wcag-compliant-blocks-pricing-tables .pricing-tables-container .pricing-tier {
+        /* Very short transition duration to create a "quick-snap" effect */
+        transition-duration: 0.05s;
+    }
 }
 
 @media (max-width: 600px) {
