@@ -14,7 +14,14 @@ return array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'defaultControls' => array(
+				'align' => 'wide'
+			)
 		),
 		'textdomain' => 'wcag-compliant-blocks-pricing-tables',
 		'attributes' => array(

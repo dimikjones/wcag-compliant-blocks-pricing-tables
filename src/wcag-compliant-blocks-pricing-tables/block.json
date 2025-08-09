@@ -9,7 +9,11 @@
 	"description": "Accessible pricing tables block with configurable tiers.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": ["wide","full"],
+		"defaultControls": {
+            "align": "wide"
+        }
 	},
 	"textdomain": "wcag-compliant-blocks-pricing-tables",
 	"attributes": {
