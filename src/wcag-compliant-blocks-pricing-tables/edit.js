@@ -1,9 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, Button, RangeControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, TextControl, Button, RangeControl, ToggleControl, Icon } from '@wordpress/components';
+import { arrowUp, arrowDown } from '@wordpress/icons';
 import { RichText, URLInput } from '@wordpress/block-editor';
 
 /**
@@ -39,6 +40,20 @@ export default function Edit({ attributes, setAttributes }) {
 	const removeTier = (index) => {
 		if (tiers.length <= 2) return;
 		const newTiers = tiers.filter((_, i) => i !== index);
+		setAttributes({ tiers: newTiers });
+	};
+
+	const moveTierUp = (index) => {
+		if (index === 0) return;
+		const newTiers = [...tiers];
+		[newTiers[index - 1], newTiers[index]] = [newTiers[index], newTiers[index - 1]];
+		setAttributes({ tiers: newTiers });
+	};
+
+	const moveTierDown = (index) => {
+		if (index === tiers.length - 1) return;
+		const newTiers = [...tiers];
+		[newTiers[index], newTiers[index + 1]] = [newTiers[index + 1], newTiers[index]];
 		setAttributes({ tiers: newTiers });
 	};
 
@@ -83,14 +98,32 @@ export default function Edit({ attributes, setAttributes }) {
 								checked={tier.featured_table || false}
 								onChange={(value) => updateTierProperty(index, 'featured_table', value)}
 							/>
-							{tiers.length > 2 && (
+							<div className="tier-actions">
 								<Button
-									variant="secondary"
-									onClick={() => removeTier(index)}
-								>
-									{__('Remove Tier', 'wcag-compliant-blocks-pricing-tables')}
-								</Button>
-							)}
+									className="move-tier-button"
+									disabled={index === 0}
+									onClick={() => moveTierUp(index)}
+									icon={arrowUp}
+									label={__('Move tier up', 'wcag-compliant-blocks-pricing-tables')}
+									showTooltip
+								/>
+								<Button
+									className="move-tier-button"
+									disabled={index === tiers.length - 1}
+									onClick={() => moveTierDown(index)}
+									icon={arrowDown}
+									label={__('Move tier down', 'wcag-compliant-blocks-pricing-tables')}
+									showTooltip
+								/>
+								{tiers.length > 2 && (
+									<Button
+										variant="secondary"
+										onClick={() => removeTier(index)}
+									>
+										{__('Remove Tier', 'wcag-compliant-blocks-pricing-tables')}
+									</Button>
+								)}
+							</div>
 						</PanelBody>
 					))}
 					{tiers.length < 3 && (

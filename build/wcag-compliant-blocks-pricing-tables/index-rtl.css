@@ -1,1 +1,1 @@
-
+.tier-actions{border-top:1px solid #e0e0e0;display:flex;gap:8px;margin-top:16px;padding-top:16px}.tier-actions .move-tier-button{min-width:auto;padding:6px}.tier-actions .move-tier-button:disabled{cursor:not-allowed;opacity:.5}.tier-actions .move-tier-button:not(:disabled):hover{background-color:#f0f0f0}.tier-actions .components-button.is-secondary{margin-right:auto}.wp-block-wcag-compliant-blocks-pricing-tables{display:flex;gap:20px;margin:20px 0}
