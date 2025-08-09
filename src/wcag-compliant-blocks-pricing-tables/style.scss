@@ -3,27 +3,14 @@
 
 	.pricing-tables-container {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		align-items: center;
 		gap: var(--wp--preset--spacing--40);
-		margin: var(--wp--preset--spacing--70) 0;
-
-		/* Two tiers per row */
-		&.tables--2 .pricing-tier {
-			flex-basis: 50%;
-		}
-
-		/* Three tiers per row */
-		&.tables--3 .pricing-tier {
-			flex-basis: 33.33%;
-		}
-
-		/* Single tier per row */
-		&.tables--1 .pricing-tier {
-			flex-basis: 100%;
-			max-width: 400px;
-		}
+		margin: var(--wp--preset--spacing--80) 0;
 
 		.pricing-tier {
+			width: 100%;
+			max-width: 300px;
 			border: 2px solid rgba(0, 0, 0, 0.2);
 			border-radius: 10px;
 			padding: var(--wp--preset--spacing--40);
@@ -33,7 +20,7 @@
 			text-align: center;
 			will-change: transform;
 
-			&:hover,
+			&:hover:not(.featured),
 			&:focus {
 				transform: translateY(-5px);
 			}
@@ -82,16 +69,18 @@
 				padding-bottom: 1rem;
 				padding-left: 2.25rem;
 				text-decoration: none;
+				transition: background-color .2s ease-in;
 
 				&:hover {
-					background: #2a4bd1;
+					background-color: var(--wp--preset--color--accent-3);
 				}
 			}
 
 			&.featured {
+				margin-top: 40px;
+				transform: none;
 				border: 2px solid var(--wp--preset--color--accent-3);
 				position: relative;
-				transform: translateY(-20px);
 				box-shadow: var(--wp--preset--shadow--sharp);
 
 				.best-deal-label {
@@ -112,7 +101,43 @@
 
 				.button {
 					background-color: var(--wp--preset--color--accent-3);
+
+					&:hover {
+						background-color: var(--wp--preset--color--contrast);
+					}
 				}
+			}
+		}
+
+		/*
+		* Use a min-width media query to apply styles only when the viewport
+		* is 768px or wider.
+		*/
+		@media (min-width: 768px) {
+			flex-direction: row; /* Change to a horizontal layout */
+			justify-content: center;
+
+			/*
+			* Make each pricing tier flexible. We use flex-basis to control the minimum size.
+			* This allows tiers to wrap or grow depending on how many are in the container.
+			*/
+			.pricing-tier {
+				flex: 1 1 300px; /* Each tier can grow, shrink, and has a starting width of 300px */
+
+				&.featured {
+					margin-top: 0;
+					transform: translateY(-20px);
+				}
+			}
+
+			/* Two tiers per row */
+			&.tables--2 .pricing-tier {
+				flex-basis: calc(50% - var(--wp--preset--spacing--40));
+			}
+			
+			/* Three tiers per row */
+			&.tables--3 .pricing-tier {
+				flex-basis: calc(33.333% - var(--wp--preset--spacing--40));
 			}
 		}
 	}
@@ -124,14 +149,9 @@
  * faster and less jarring animation.
  */
 @media (prefers-reduced-motion: reduce) {
-    .wp-block-wcag-compliant-blocks-pricing-tables .pricing-tables-container .pricing-tier {
+    .wp-block-wcag-compliant-blocks-pricing-tables .pricing-tables-container .pricing-tier,
+	.wp-block-wcag-compliant-blocks-pricing-tables .pricing-tables-container .pricing-tier .button {
         /* Very short transition duration to create a "quick-snap" effect */
         transition-duration: 0.05s;
     }
-}
-
-@media (max-width: 600px) {
-	.wp-block-wcag-compliant-blocks-pricing-tables {
-		grid-template-columns: 1fr;
-	}
 }
