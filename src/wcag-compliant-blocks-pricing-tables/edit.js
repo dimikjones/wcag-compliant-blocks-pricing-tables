@@ -3,8 +3,8 @@
  */
 import { __, sprintf } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, Button, RangeControl, ToggleControl, Icon } from '@wordpress/components';
-import { arrowUp, arrowDown } from '@wordpress/icons';
+import { PanelBody, TextControl, Button, RangeControl, ToggleControl, Icon, SelectControl } from '@wordpress/components';
+import { arrowUp, arrowDown, plus, trash } from '@wordpress/icons';
 import { RichText, URLInput } from '@wordpress/block-editor';
 
 /**
@@ -21,6 +21,48 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ tiers: newTiers });
 	};
 
+	const updateFeatureProperty = (tierIndex, featureIndex, property, value) => {
+		const newTiers = [...tiers];
+		newTiers[tierIndex].features[featureIndex][property] = value;
+		setAttributes({ tiers: newTiers });
+	};
+
+	const addFeature = (tierIndex) => {
+		const newTiers = [...tiers];
+		if (!newTiers[tierIndex].features) {
+			newTiers[tierIndex].features = [];
+		}
+		newTiers[tierIndex].features.push({
+			text: __('New Feature', 'wcag-compliant-blocks-pricing-tables'),
+			isExcluded: false
+		});
+		setAttributes({ tiers: newTiers });
+	};
+
+	const removeFeature = (tierIndex, featureIndex) => {
+		const newTiers = [...tiers];
+		newTiers[tierIndex].features.splice(featureIndex, 1);
+		setAttributes({ tiers: newTiers });
+	};
+
+	const moveFeatureUp = (tierIndex, featureIndex) => {
+		if (featureIndex === 0) return;
+		const newTiers = [...tiers];
+		const features = [...newTiers[tierIndex].features];
+		[features[featureIndex - 1], features[featureIndex]] = [features[featureIndex], features[featureIndex - 1]];
+		newTiers[tierIndex].features = features;
+		setAttributes({ tiers: newTiers });
+	};
+
+	const moveFeatureDown = (tierIndex, featureIndex) => {
+		if (featureIndex === tiers[tierIndex].features.length - 1) return;
+		const newTiers = [...tiers];
+		const features = [...newTiers[tierIndex].features];
+		[features[featureIndex], features[featureIndex + 1]] = [features[featureIndex + 1], features[featureIndex]];
+		newTiers[tierIndex].features = features;
+		setAttributes({ tiers: newTiers });
+	};
+
 	const addTier = () => {
 		if (tiers.length >= 3) return;
 		setAttributes({
@@ -31,7 +73,11 @@ export default function Edit({ attributes, setAttributes }) {
 					price: '$0/month',
 					description: '',
 					buttonText: __('Get Started', 'wcag-compliant-blocks-pricing-tables'),
-					buttonUrl: ''
+					buttonUrl: '',
+					features: [
+						{ text: __('Feature 1', 'wcag-compliant-blocks-pricing-tables'), isExcluded: false },
+						{ text: __('Feature 2', 'wcag-compliant-blocks-pricing-tables'), isExcluded: false }
+					]
 				}
 			]
 		});
@@ -83,6 +129,66 @@ export default function Edit({ attributes, setAttributes }) {
 								onChange={(value) => updateTierProperty(index, 'description', value)}
 								multiline="p"
 							/>
+							<ToggleControl
+								label={__('Featured Table', 'wcag-compliant-blocks-pricing-tables')}
+								checked={tier.featured_table || false}
+								onChange={(value) => updateTierProperty(index, 'featured_table', value)}
+							/>
+							<div className="features-section">
+								<label className="components-base-control__label">
+									{__('Features', 'wcag-compliant-blocks-pricing-tables')}
+								</label>
+								{tier.features && tier.features.map((feature, featureIndex) => (
+									<div key={featureIndex} className="qodef-repeater-item">
+										<div className="qodef-repeater-item-heading">
+											<span className="qodef-repeater-item-heading-label">
+												{sprintf(__('Item %d', 'wcag-compliant-blocks-pricing-tables'), featureIndex + 1)}
+											</span>
+											<div className="qodef-repeater-item-action">
+												<Button
+													className="qodef-repeater-button qodef--move-up"
+													disabled={featureIndex === 0}
+													onClick={() => moveFeatureUp(index, featureIndex)}
+													icon={arrowUp}
+													label={__('Move Up', 'wcag-compliant-blocks-pricing-tables')}
+													showTooltip
+												/>
+												<Button
+													className="qodef-repeater-button qodef--move-down"
+													disabled={featureIndex === tier.features.length - 1}
+													onClick={() => moveFeatureDown(index, featureIndex)}
+													icon={arrowDown}
+													label={__('Move Down', 'wcag-compliant-blocks-pricing-tables')}
+													showTooltip
+												/>
+												<Button
+													className="qodef-repeater-button qodef--remove"
+													onClick={() => removeFeature(index, featureIndex)}
+													icon={trash}
+													label={__('Remove Item', 'wcag-compliant-blocks-pricing-tables')}
+													showTooltip
+												/>
+											</div>
+										</div>
+										<div className="qodef-repeater-item-options">
+											<div className="qodef-repeater-item-option">
+												<TextControl
+													label={__('Feature Text', 'wcag-compliant-blocks-pricing-tables')}
+													value={feature.text}
+													onChange={(value) => updateFeatureProperty(index, featureIndex, 'text', value)}
+												/>
+											</div>
+										</div>
+									</div>
+								))}
+								<Button
+									variant="secondary"
+									onClick={() => addFeature(index)}
+									icon={plus}
+								>
+									{__('Add Feature', 'wcag-compliant-blocks-pricing-tables')}
+								</Button>
+							</div>
 							<TextControl
 								label={__('Button Text', 'wcag-compliant-blocks-pricing-tables')}
 								value={tier.buttonText}
@@ -92,11 +198,6 @@ export default function Edit({ attributes, setAttributes }) {
 								label={__('Button URL', 'wcag-compliant-blocks-pricing-tables')}
 								value={tier.buttonUrl}
 								onChange={(value) => updateTierProperty(index, 'buttonUrl', value)}
-							/>
-							<ToggleControl
-								label={__('Featured Table', 'wcag-compliant-blocks-pricing-tables')}
-								checked={tier.featured_table || false}
-								onChange={(value) => updateTierProperty(index, 'featured_table', value)}
 							/>
 							<div className="tier-actions">
 								<Button
@@ -147,6 +248,13 @@ export default function Edit({ attributes, setAttributes }) {
 							className="description"
 							value={tier.description}
 						/>
+						{tier.features && tier.features.length > 0 && (
+							<ul className="features-list">
+								{tier.features.map((feature, index) => (
+									<li key={index}>{feature.text}</li>
+								))}
+							</ul>
+						)}
 						{tier.buttonUrl && (
 							<a href={tier.buttonUrl} className="button">
 								{tier.buttonText}

@@ -29,3 +29,98 @@
     gap: 20px;
     margin: 20px 0;
 }
+
+.features-section {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+
+    .components-base-control__label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+}
+
+.qodef-repeater-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+
+    .qodef-repeater-item-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .qodef-repeater-item-options {
+        padding: 0 8px;
+    }
+
+    .qodef-repeater-item-action {
+        display: flex;
+        gap: 4px;
+
+        .qodef-repeater-button {
+            padding: 6px;
+            min-width: auto;
+            height: auto;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+
+            &.qodef--remove {
+                color: #cc1818;
+
+                &:hover {
+                    background-color: rgba(204, 24, 24, 0.1);
+                }
+            }
+        }
+    }
+}
+
+.qodef-repeater-option {
+    margin-top: 16px;
+
+    .qodef-option-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+    }
+
+    .qodef-repeater-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .qodef-repeater-button.qodef--add {
+        margin-top: 12px;
+    }
+}
+
+.feature-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+
+    .move-feature-button,
+    .remove-feature-button {
+        padding: 6px;
+        min-width: auto;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &:not(:disabled):hover {
+            background-color: #f0f0f0;
+        }
+    }
+}

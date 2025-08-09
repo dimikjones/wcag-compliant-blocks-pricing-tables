@@ -16,6 +16,13 @@ export default function save({ attributes }) {
 							className="description"
 							value={tier.description}
 						/>
+						{tier.features && tier.features.length > 0 && (
+							<ul className="features-list">
+								{tier.features.map((feature, index) => (
+									<li key={index}>{feature.text}</li>
+								))}
+							</ul>
+						)}
 						{tier.buttonUrl && (
 							<a href={tier.buttonUrl} className="button">
 								{tier.buttonText}

@@ -25,17 +25,33 @@ return array(
 						'name' => 'Basic',
 						'price' => '$10/month',
 						'description' => 'Basic plan features',
+						'featured_table' => false,
+						'features' => array(
+							array(
+								'text' => 'Feature 1'
+							),
+							array(
+								'text' => 'Feature 2'
+							)
+						),
 						'buttonText' => 'Get Started',
-						'buttonUrl' => '',
-						'featured_table' => false
+						'buttonUrl' => ''
 					),
 					array(
 						'name' => 'Pro',
 						'price' => '$20/month',
 						'description' => 'Pro plan features',
+						'featured_table' => false,
+						'features' => array(
+							array(
+								'text' => 'Feature 1'
+							),
+							array(
+								'text' => 'Feature 2'
+							)
+						),
 						'buttonText' => 'Get Started',
-						'buttonUrl' => '',
-						'featured_table' => false
+						'buttonUrl' => ''
 					)
 				)
 			)

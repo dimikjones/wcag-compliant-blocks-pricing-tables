@@ -20,17 +20,33 @@
           "name": "Basic",
           "price": "$10/month",
           "description": "Basic plan features",
+          "featured_table": false,
+          "features": [
+            {
+              "text": "Feature 1"
+            },
+            {
+              "text": "Feature 2"
+            }
+          ],
           "buttonText": "Get Started",
-          "buttonUrl": "",
-          "featured_table": false
+          "buttonUrl": ""
         },
         {
           "name": "Pro",
           "price": "$20/month",
           "description": "Pro plan features",
+          "featured_table": false,
+          "features": [
+            {
+              "text": "Feature 1"
+            },
+            {
+              "text": "Feature 2"
+            }
+          ],
           "buttonText": "Get Started",
-          "buttonUrl": "",
-          "featured_table": false
+          "buttonUrl": ""
         }
       ]
     }
