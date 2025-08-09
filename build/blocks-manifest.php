@@ -28,10 +28,12 @@ return array(
 						'featured_table' => false,
 						'features' => array(
 							array(
-								'text' => 'Feature 1'
+								'text' => 'Feature 1',
+								'isExcluded' => false
 							),
 							array(
-								'text' => 'Feature 2'
+								'text' => 'Feature 2',
+								'isExcluded' => false
 							)
 						),
 						'buttonText' => 'Get Started',
@@ -44,10 +46,12 @@ return array(
 						'featured_table' => false,
 						'features' => array(
 							array(
-								'text' => 'Feature 1'
+								'text' => 'Feature 1',
+								'isExcluded' => false
 							),
 							array(
-								'text' => 'Feature 2'
+								'text' => 'Feature 2',
+								'isExcluded' => false
 							)
 						),
 						'buttonText' => 'Get Started',

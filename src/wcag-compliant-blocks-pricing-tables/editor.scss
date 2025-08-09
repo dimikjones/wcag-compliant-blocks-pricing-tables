@@ -36,29 +36,29 @@
     }
 }
 
-.qodef-repeater-item {
+.repeater-item {
     padding: 12px;
     margin-bottom: 12px;
     background: #f9f9f9;
     border-radius: 4px;
     border: 1px solid #e0e0e0;
 
-    .qodef-repeater-item-heading {
+    .repeater-item-heading {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 12px;
     }
 
-    .qodef-repeater-item-options {
+    .repeater-item-options {
         padding: 0 8px;
     }
 
-    .qodef-repeater-item-action {
+    .repeater-item-action {
         display: flex;
         gap: 4px;
 
-        .qodef-repeater-button {
+        .repeater-button {
             padding: 6px;
             min-width: auto;
             height: auto;
@@ -67,7 +67,7 @@
                 background-color: #f0f0f0;
             }
 
-            &.qodef--remove {
+            &.-remove {
                 color: #cc1818;
 
                 &:hover {
@@ -78,22 +78,22 @@
     }
 }
 
-.qodef-repeater-option {
+.repeater-option {
     margin-top: 16px;
 
-    .qodef-option-label {
+    .option-label {
         display: block;
         margin-bottom: 8px;
         font-weight: 600;
     }
 
-    .qodef-repeater-items {
+    .repeater-items {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
 
-    .qodef-repeater-button.qodef--add {
+    .repeater-button.-add {
         margin-top: 12px;
     }
 }

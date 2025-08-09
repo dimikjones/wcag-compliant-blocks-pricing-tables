@@ -23,10 +23,12 @@
 					"featured_table": false,
 					"features": [
 						{
-							"text": "Feature 1"
+							"text": "Feature 1",
+							"isExcluded": false
 						},
 						{
-							"text": "Feature 2"
+							"text": "Feature 2", 
+							"isExcluded": false
 						}
 					],
 					"buttonText": "Get Started",
@@ -39,10 +41,12 @@
 					"featured_table": false,
 					"features": [
 						{
-							"text": "Feature 1"
+							"text": "Feature 1",
+							"isExcluded": false
 						},
 						{
-							"text": "Feature 2"
+							"text": "Feature 2",
+							"isExcluded": false
 						}
 					],
 					"buttonText": "Get Started",

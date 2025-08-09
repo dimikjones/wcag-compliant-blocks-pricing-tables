@@ -63,6 +63,16 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ tiers: newTiers });
 	};
 
+	const duplicateFeature = (tierIndex, featureIndex) => {
+		const newTiers = [...tiers];
+		const featureToCopy = { ...newTiers[tierIndex].features[featureIndex] };
+		newTiers[tierIndex].features.splice(featureIndex + 1, 0, {
+			...featureToCopy,
+			text: `${featureToCopy.text} (${__('Copy', 'wcag-compliant-blocks-pricing-tables')})`
+		});
+		setAttributes({ tiers: newTiers });
+	};
+
 	const addTier = () => {
 		if (tiers.length >= 3) return;
 		setAttributes({
@@ -131,7 +141,6 @@ export default function Edit({ attributes, setAttributes }) {
 								label={__('Description', 'wcag-compliant-blocks-pricing-tables')}
 								value={tier.description}
 								onChange={(value) => updateTierProperty(index, 'description', value)}
-								multiline="p"
 							/>
 							<ToggleControl
 								label={__('Featured Table', 'wcag-compliant-blocks-pricing-tables')}
@@ -143,14 +152,14 @@ export default function Edit({ attributes, setAttributes }) {
 									{__('Features', 'wcag-compliant-blocks-pricing-tables')}
 								</label>
 								{tier.features && tier.features.map((feature, featureIndex) => (
-									<div key={featureIndex} className="qodef-repeater-item">
-										<div className="qodef-repeater-item-heading">
-											<span className="qodef-repeater-item-heading-label">
+									<div key={featureIndex} className="repeater-item">
+										<div className="repeater-item-heading">
+											<span className="repeater-item-heading-label">
 												{sprintf(__('Item %d', 'wcag-compliant-blocks-pricing-tables'), featureIndex + 1)}
 											</span>
-											<div className="qodef-repeater-item-action">
+											<div className="repeater-item-action">
 												<Button
-													className="qodef-repeater-button qodef--move-up"
+													className="repeater-button -move-up"
 													disabled={featureIndex === 0}
 													onClick={() => moveFeatureUp(index, featureIndex)}
 													icon={arrowUp}
@@ -158,7 +167,7 @@ export default function Edit({ attributes, setAttributes }) {
 													showTooltip
 												/>
 												<Button
-													className="qodef-repeater-button qodef--move-down"
+													className="repeater-button -move-down"
 													disabled={featureIndex === tier.features.length - 1}
 													onClick={() => moveFeatureDown(index, featureIndex)}
 													icon={arrowDown}
@@ -166,7 +175,14 @@ export default function Edit({ attributes, setAttributes }) {
 													showTooltip
 												/>
 												<Button
-													className="qodef-repeater-button qodef--remove"
+													className="repeater-button -duplicate"
+													onClick={() => duplicateFeature(index, featureIndex)}
+													icon={plus}
+													label={__('Duplicate Item', 'wcag-compliant-blocks-pricing-tables')}
+													showTooltip
+												/>
+												<Button
+													className="repeater-button -remove"
 													onClick={() => removeFeature(index, featureIndex)}
 													icon={trash}
 													label={__('Remove Item', 'wcag-compliant-blocks-pricing-tables')}
@@ -174,12 +190,19 @@ export default function Edit({ attributes, setAttributes }) {
 												/>
 											</div>
 										</div>
-										<div className="qodef-repeater-item-options">
-											<div className="qodef-repeater-item-option">
+										<div className="repeater-item-options">
+											<div className="repeater-item-option">
 												<TextControl
 													label={__('Feature Text', 'wcag-compliant-blocks-pricing-tables')}
 													value={feature.text}
 													onChange={(value) => updateFeatureProperty(index, featureIndex, 'text', value)}
+												/>
+											</div>
+											<div className="repeater-item-option">
+												<ToggleControl
+													label={__('Excluded', 'wcag-compliant-blocks-pricing-tables')}
+													checked={feature.isExcluded}
+													onChange={(value) => updateFeatureProperty(index, featureIndex, 'isExcluded', value)}
 												/>
 											</div>
 										</div>
@@ -260,7 +283,9 @@ export default function Edit({ attributes, setAttributes }) {
 						{tier.features && tier.features.length > 0 && (
 							<ul className="features-list">
 								{tier.features.map((feature, index) => (
-									<li key={index}>{feature.text}</li>
+									<li key={index} className={feature.isExcluded ? 'excluded-feature' : ''}>
+										{feature.text}
+									</li>
 								))}
 							</ul>
 						)}
