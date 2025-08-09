@@ -1,55 +1,51 @@
 === Wcag Compliant Blocks Pricing Tables ===
-Contributors:      The WordPress Contributors
-Tags:              block
-Tested up to:      6.7
+Contributors:      Marko Dimitrijevic
+Plugin URI:        https://github.com/dimikjones/wcag-compliant-blocks-pricing-tables
+Tags:              block, pricing, table
+Requires at least: 6.8
+Tested up to:      6.8
 Stable tag:        0.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example block scaffolded with Create Block tool.
+Create easily adjustable pricing tables with up to 3 tiers for displaying pricing plans.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Create easily adjustable pricing tables with up to 3 tiers for displaying pricing plans.
+The block was developed specifically for the Twenty Twenty-Five theme.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+1. Download the ZIP file. Then, from the WordPress admin, navigate to Plugins > Add Plugin > Upload Plugin and choose the downloaded ZIP file.
+2. Alternatively, clone the repository to the /wp-content/plugins/ directory.
+3. Activate the plugin.
 
-e.g.
+== Usage ==
 
-1. Upload the plugin files to the `/wp-content/plugins/wcag-compliant-blocks-pricing-tables` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+On a post or page, navigate to Add Block and choose the 'WCAG Compliant Pricing Tables' Block.
+By default, two pricing tiers will be added, but from the Block Controls you can add a third tier.
+In each tier, the user can add the following content:
 
+- Plan Name
+- Price
+- Featured Table (toggle control)
+- Features (repeater fields with sorting, duplicate & delete, and also an Excluded toggle control)
+ -Button text
+- Button URL
+- Sorting (Move Tier Up or Down)
+- Rich Text can be directly edited and entered inside the block for the description
+- The block toolbar has an alignment option, and for 3 tiers, it is better to use Wide width.
 
-== Frequently Asked Questions ==
+== Assumptions ==
+Design/UX choices (e.g., default tier count, layout
+approach).
 
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+== Considerations ==
+Notes on accessibility, code structure, and optional
+enhancements.
 
 == Changelog ==
 
 = 0.1.0 =
-* Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+*Initial release.

@@ -1,11 +1,13 @@
 <?php
 /**
  * Plugin Name:       WCAG Compliant Blocks Pricing Tables
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin URI:  	  https://github.com/dimikjones/wcag-compliant-blocks-pricing-tables
+ * Description:       Create easily adjustable pricing tables with up to 3 tiers for displaying pricing plans.
  * Version:           0.1.0
- * Requires at least: 6.7
+ * Requires at least: 6.8
  * Requires PHP:      7.4
- * Author:            The WordPress Contributors
+ * Author:            Marko Dimitrijevic
+ * Author URI:  	  https://www.linkedin.com/in/diwebdeveloper/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       wcag-compliant-blocks-pricing-tables
