@@ -103,6 +103,10 @@ export default function Edit({ attributes, setAttributes }) {
 		setAttributes({ tiers: newTiers });
 	};
 
+	const blockProps = useBlockProps();
+    const tierCount = tiers.length;
+    const tierCountClass = tierCount > 0 ? `tables--${tierCount}` : '';
+
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
@@ -242,7 +246,7 @@ export default function Edit({ attributes, setAttributes }) {
 				{ /* A screen-reader-only heading provides a clear title for the section. */ }
 				<h2 class="screen-reader-text">{ __( 'Choose your plan', 'wcag-compliant-blocks-pricing-tables' ) }</h2>
 				{ /* The main container for all pricing tiers. role="region" and aria-label identify this section for screen reader users in order to navigate to it easily. */ }
-				<div class="pricing-tables-container" role="region" aria-label={ __( 'Pricing tables', 'wcag-compliant-blocks-pricing-tables' ) }>
+				<div className={`pricing-tables-container ${tierCountClass}`} role="region" aria-label={ __( 'Pricing tables', 'wcag-compliant-blocks-pricing-tables' ) }>
 				{ /* Each pricing tier is an independent "article". The aria-labelledby attribute links the tier to its specific title for clear context. */ }
 				{tiers.map((tier, index) => (
 					<div key={index} className={`pricing-tier ${tier.featured_table ? 'featured' : ''}`} role="article" aria-labelledby={`plan-${index}-${tier.name.replace(/\s+/g, '-').toLowerCase()}`} {...(tier.featured_table ? { 'aria-current': 'true' } : {})}>
