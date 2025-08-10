@@ -5,17 +5,17 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--wp--preset--spacing--40);
-		margin: var(--wp--preset--spacing--80) 0;
+		gap: var(--wp--preset--spacing--40, 30px);
+		margin: var(--wp--preset--spacing--80, 80px) 0;
 
 		.pricing-tier {
 			width: 100%;
 			max-width: 300px;
 			border: 2px solid rgba(0, 0, 0, 0.2);
 			border-radius: 10px;
-			padding: var(--wp--preset--spacing--40);
+			padding: var(--wp--preset--spacing--40, 30px);
 			background: #fff;
-			box-shadow: var(--wp--preset--shadow--sharp);
+			box-shadow: var(--wp--preset--shadow--sharp, 6px 6px 0px rgba(0, 0, 0, 0.2));
 			transition: transform 0.3s ease;
 			text-align: center;
 			will-change: transform;
@@ -30,8 +30,8 @@
 			}
 
 			.price {
-				font-size: var(--wp--preset--font-size--large);
-				font-family: var(--wp--preset--font-family--fira-code);
+				font-size: var(--wp--preset--font-size--large, 1.375rem);
+				font-family: var(--wp--preset--font-family--fira-code, monospace);
 				font-weight: 400;
 				margin-bottom: 1rem;
 			}
@@ -57,11 +57,11 @@
 
 			.button {
 				display: block;
-				background-color: var(--wp--preset--color--contrast);
+				background-color: var(--wp--preset--color--contrast, #111111);
 				border-width: 0;
-				color: var(--wp--preset--color--base);
+				color: var(--wp--preset--color--base,#FFFFFF);
 				font-family: inherit;
-				font-size: var(--wp--preset--font-size--medium);
+				font-size: var(--wp--preset--font-size--medium, 1.125rem);
 				font-weight: 600;
 				line-height: inherit;
 				padding-top: 1rem;
@@ -72,16 +72,16 @@
 				transition: background-color .2s ease-in;
 
 				&:hover {
-					background-color: var(--wp--preset--color--accent-3);
+					background-color: var(--wp--preset--color--accent-3, #503AA8);
 				}
 			}
 
 			&.featured {
 				margin-top: 40px;
 				transform: none;
-				border: 2px solid var(--wp--preset--color--accent-3);
+				border: 2px solid var(--wp--preset--color--accent-3, #503AA8);
 				position: relative;
-				box-shadow: var(--wp--preset--shadow--sharp);
+				box-shadow: var(--wp--preset--shadow--sharp, 6px 6px 0px rgba(0, 0, 0, 0.2));
 
 				.best-deal-label {
 					position: absolute;
@@ -94,16 +94,16 @@
 					top: -40px;
 					left: 50%;
 					transform: translateX(-50%);
-					background-color: var(--wp--preset--color--accent-3);
+					background-color: var(--wp--preset--color--accent-3, #503AA8);
 					color: #fff;
 					font-weight: 500;
 				}
 
 				.button {
-					background-color: var(--wp--preset--color--accent-3);
+					background-color: var(--wp--preset--color--accent-3, #503AA8);
 
 					&:hover {
-						background-color: var(--wp--preset--color--contrast);
+						background-color: var(--wp--preset--color--contrast, #111111);
 					}
 				}
 			}
@@ -132,12 +132,12 @@
 
 			/* Two tiers per row */
 			&.tables--2 .pricing-tier {
-				flex-basis: calc(50% - var(--wp--preset--spacing--40));
+				flex-basis: calc(50% - var(--wp--preset--spacing--40, 30px));
 			}
 			
 			/* Three tiers per row */
 			&.tables--3 .pricing-tier {
-				flex-basis: calc(33.333% - var(--wp--preset--spacing--40));
+				flex-basis: calc(33.333% - var(--wp--preset--spacing--40, 30px));
 			}
 		}
 	}
