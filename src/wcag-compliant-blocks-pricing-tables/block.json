@@ -7,7 +7,38 @@
 	"category": "widgets",
 	"icon": "editor-table",
 	"description": "Accessible pricing tables block with configurable tiers.",
-	"example": {},
+	"example": {
+        "attributes": {
+            "tiers": [
+                {
+                    "name": "Basic",
+                    "price": "$10/month",
+                    "description": "A great starting point for your needs.",
+                    "featured_table": false,
+                    "features": [
+                        { "text": "Feature 1", "isExcluded": false },
+                        { "text": "Feature 2", "isExcluded": false },
+                        { "text": "Feature 3", "isExcluded": true }
+                    ],
+                    "buttonText": "Get Started",
+                    "buttonUrl": "#"
+                },
+                {
+                    "name": "Pro",
+                    "price": "$20/month",
+                    "description": "Our most popular plan, designed for professionals.",
+                    "featured_table": true,
+                    "features": [
+                        { "text": "Feature 1", "isExcluded": false },
+                        { "text": "Feature 2", "isExcluded": false },
+                        { "text": "Feature 3", "isExcluded": false }
+                    ],
+                    "buttonText": "Get Started",
+                    "buttonUrl": "#"
+                }
+            ]
+        }
+    },
 	"supports": {
 		"html": false,
 		"align": ["wide","full"],
@@ -42,7 +73,7 @@
 					"name": "Pro",
 					"price": "$20/month",
 					"description": "Pro plan features",
-					"featured_table": false,
+					"featured_table": true,
 					"features": [
 						{
 							"text": "Feature 1",

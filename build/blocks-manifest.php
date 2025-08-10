@@ -11,7 +11,54 @@ return array(
 		'icon' => 'editor-table',
 		'description' => 'Accessible pricing tables block with configurable tiers.',
 		'example' => array(
-			
+			'attributes' => array(
+				'tiers' => array(
+					array(
+						'name' => 'Basic',
+						'price' => '$10/month',
+						'description' => 'A great starting point for your needs.',
+						'featured_table' => false,
+						'features' => array(
+							array(
+								'text' => 'Feature 1',
+								'isExcluded' => false
+							),
+							array(
+								'text' => 'Feature 2',
+								'isExcluded' => false
+							),
+							array(
+								'text' => 'Feature 3',
+								'isExcluded' => true
+							)
+						),
+						'buttonText' => 'Get Started',
+						'buttonUrl' => '#'
+					),
+					array(
+						'name' => 'Pro',
+						'price' => '$20/month',
+						'description' => 'Our most popular plan, designed for professionals.',
+						'featured_table' => true,
+						'features' => array(
+							array(
+								'text' => 'Feature 1',
+								'isExcluded' => false
+							),
+							array(
+								'text' => 'Feature 2',
+								'isExcluded' => false
+							),
+							array(
+								'text' => 'Feature 3',
+								'isExcluded' => false
+							)
+						),
+						'buttonText' => 'Get Started',
+						'buttonUrl' => '#'
+					)
+				)
+			)
 		),
 		'supports' => array(
 			'html' => false,
@@ -50,7 +97,7 @@ return array(
 						'name' => 'Pro',
 						'price' => '$20/month',
 						'description' => 'Pro plan features',
-						'featured_table' => false,
+						'featured_table' => true,
 						'features' => array(
 							array(
 								'text' => 'Feature 1',
